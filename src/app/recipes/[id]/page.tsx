@@ -10,12 +10,11 @@ const getData = async (id: string) => {
   return { recipe, relatedRecipes }
 }
 
-interface PageProps {
-  params: { id: string };
-}
+interface PageProps { params: Promise<{ id: string }> }
+
 
 export default async function RecipePage({ params }: PageProps) {
-  const {recipe, relatedRecipes} = await getData(params.id)
+  const {recipe, relatedRecipes} = await getData((await params).id)
 
   return <RecipeView {...recipe} relatedRecipes={relatedRecipes} />
 }

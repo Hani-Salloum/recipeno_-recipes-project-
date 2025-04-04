@@ -11,7 +11,6 @@ interface CategoryCardProps {
 }
 
 export default function CategoryCard({
-    idCategory,
     strCategory,
     strCategoryThumb,
     strCategoryDescription

@@ -23,7 +23,7 @@ export default function RecipesGrid({ recipes }: RecipesGridProps) {
             console.log(`Recipe ${id} favorite status: ${isFavorite}`);
           }}
           onClick={() => {
-            console.log(`Navigating to recipe ${recipe.id}`);
+            console.log(`Navigating to recipe ${recipe.idMeal}`);
           }}
         />
       ))}

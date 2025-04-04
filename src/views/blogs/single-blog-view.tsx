@@ -9,7 +9,7 @@ import SectionHeading from "@/components/section-heading"
 import BlogPost from "@/components/blogs/blog-post"
 
 interface BlogPostProps {
-  post: BlogType
+  post: BlogType | undefined
   relatedBlogs: BlogType[]
   relatedRecipes: RecipeProps[]
 }
@@ -36,7 +36,7 @@ export default function BlogPostView({ post, relatedBlogs, relatedRecipes }: Blo
       <div className="grid grid-cols-1 lg:grid-cols-6 gap-8">
         {/* Main content - 5/6 of the page */}
         <div className="lg:col-span-4">
-          <BlogPost post={post} />
+          {post && <BlogPost post={post} />}
 
           <div>
             <RecipeSection 

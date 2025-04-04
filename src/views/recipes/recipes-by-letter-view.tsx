@@ -4,16 +4,17 @@ import { useEffect, useMemo, useState } from "react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { searchRecipesByFirstLetter } from "@/api/recipes";
 import RecipeSection from "@/components/recipes-section";
+import { RecipeProps } from "@/types/recipes";
 
 export default function RecipesByLetterView() {
-  const [filteredRecipes, setFilteredRecipes] = useState([]);
+  const [filteredRecipes, setFilteredRecipes] = useState<RecipeProps[]>([]);
   const [filterValue, setFilterValue] = useState("A");
   
   const letters = useMemo(() => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''), [])
 
   useEffect(() => {
     const fetchFF = async () => {
-      const res = await searchRecipesByFirstLetter(filterValue)
+      const res: RecipeProps[] = await searchRecipesByFirstLetter(filterValue)
       setFilteredRecipes(res);
     };
     if (filterValue) fetchFF();

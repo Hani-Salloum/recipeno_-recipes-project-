@@ -9,7 +9,7 @@ const getData = async (search: string) => {
 export default async function RecipePage({
     searchParams,
   }: {
-    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+    searchParams: Promise<{ [key: string]: string }>
   }) {
     const searchValue = (await searchParams).query
   const recipes = await getData(searchValue)

@@ -10,7 +10,7 @@ import { RecipeProps } from "@/types/recipes"
 import RecipeSection from "@/components/recipes-section"
 
 export default function RecipeView({
-  idMeal,
+  // idMeal,
   strMeal,
   strCategory,
   strTag,

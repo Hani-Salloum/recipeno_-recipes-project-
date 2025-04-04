@@ -1,5 +1,5 @@
-import FaqAccordion from "./faq-accordion"
-import SectionHeading from "./section-heading"
+import FaqAccordion from "./faqs-accordion"
+import SectionHeading from "../section-heading"
 
 interface FaqSectionProps {
   className?: string

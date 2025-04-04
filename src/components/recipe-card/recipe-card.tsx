@@ -30,7 +30,7 @@ export default function RecipeCard({
   tag,
   cookTime,
   onFavoriteToggle,
-  onClick,
+  // onClick,
 }: RecipeCardProps) {
   const [favorite, setFavorite] = useState(isFavorite);
   const [isHovering, setIsHovering] = useState(false);

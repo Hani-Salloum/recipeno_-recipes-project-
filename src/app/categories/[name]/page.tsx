@@ -7,13 +7,12 @@ const getData = async (name: string) => {
   return recipes
 }
 
-interface PageProps {
-  params: { name: string };
-}
+interface PageProps { params: Promise<{ name: string }> }
 
 export default async function RecipePage({ params }: PageProps) {
-  const recipes = await getData(params.name)
+  const name = (await params).name
+  const recipes = await getData(name)
 
-  return <SingleCategoryView recipes={recipes} categoryName={params.name.split('%20').join(' ')} />
+  return <SingleCategoryView recipes={recipes} categoryName={name.split('%20').join(' ')} />
 }
 

@@ -20,7 +20,6 @@ export default function BlogCard({
   excerpt,
   image,
   date,
-  category,
   className,
   isFeature = false,
 }: BlogCardProps) {

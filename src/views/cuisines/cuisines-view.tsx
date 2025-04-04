@@ -14,13 +14,13 @@ interface CuisinesProps {
 }
 
 export default function CuisinesView({ cuisines }: CuisinesProps) {
-  const [filteredRecipes, setFilteredRecipes] = useState([]);
+  const [filteredRecipes, setFilteredRecipes] = useState<RecipeProps[]>([]);
 
   const [filterValue, setFilterValue] = useState("American");
 
   useEffect(() => {
     const fetchFF = async () => {
-      const res : Array<RecipeProps> = await filterRecipes("a", filterValue);
+      const res : RecipeProps[] = await filterRecipes("a", filterValue);
       setFilteredRecipes(res);
     };
     if (filterValue) fetchFF();

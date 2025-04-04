@@ -9,7 +9,7 @@ function getRandomLowercaseLetter() {
     return letters[randomIndex]  
 } 
 
-export const fetchAllRecipes = async (search: string, limit: number) => {
+export const fetchAllRecipes = async (search: string | null, limit: number) => {
     try {
         const letter = getRandomLowercaseLetter()
         const response = (await axiosInstance.get(`${baseURL}search.php?s=${search ?? letter}`))

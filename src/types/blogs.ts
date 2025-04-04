@@ -6,4 +6,4 @@ export interface BlogType {
     excerpt: string,
     image: string,
     description: string,
-}
+} 

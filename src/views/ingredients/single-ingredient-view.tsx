@@ -1,13 +1,11 @@
 import IngredientInfoCard from "@/components/ingredients/ingredient-info-card";
 import RecipeSection from "@/components/recipes-section";
+import { IngredientType } from "@/types/ingredients";
 import { RecipeProps } from "@/types/recipes";
 
 interface SingleIngredientProps {
-    ingredient: {
-        strIngredient: string,
-        strDescription: string,
-    };
-    recipes: Array<RecipeProps>;
+    ingredient: IngredientType | undefined;
+    recipes: RecipeProps[];
 }
 
 export default function SingleIngredientView({ ingredient, recipes }: SingleIngredientProps) {
@@ -15,7 +13,7 @@ export default function SingleIngredientView({ ingredient, recipes }: SingleIngr
         <IngredientInfoCard {...ingredient} />
         <RecipeSection
             grid
-            title={`Recipes with ${ingredient.strIngredient}`}
+            title={`Recipes with ${ingredient?.strIngredient}`}
             description="All recipes that contains this ingredient"
             recipes={recipes}
         />

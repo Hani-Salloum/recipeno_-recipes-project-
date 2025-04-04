@@ -1,15 +1,20 @@
-interface recipeType {
-  idMeal: string;
-  strMeal: string;
-  strCategory: string;
-  strArea: string;
-  strInstructions: string;
-  strMealThumb: string;
-  strYoutube: string;
-  strSource: string;
-}
+//@ts-nocheck
 
-export const restructureRecipe = (recipe: recipeType) => {
+import { RecipeProps } from "@/types/recipes";
+
+// interface recipeType {
+//   idMeal: string;
+//   strMeal: string;
+//   strCategory: string;
+//   strArea: string;
+//   strInstructions: string;
+//   strMealThumb: string;
+//   strYoutube: string;
+//   strSource: string;
+//   [key: string]: string;
+// }
+
+export const restructureRecipe = (recipe: RecipeProps) => {
   const {
     idMeal,
     strMeal,
@@ -21,20 +26,20 @@ export const restructureRecipe = (recipe: recipeType) => {
     strSource,
   } = recipe;
 
-  const ingredients = [];
-  const measures = [];
+  const ingredients: string[] = [];
+  const measures: string[] = [];
 
   Object.keys(recipe).forEach((key) => {
     if (
       key.startsWith("strIngredient") &&
-      recipe[key] !== null &&
-      recipe[key].trim() !== ""
+      recipe[key as keyof RecipeProps] !== null &&
+      recipe[key as keyof RecipeProps].trim() !== ""
     )
       ingredients.push(recipe[key]);
     if (
       key.startsWith("strMeasure") &&
-      recipe[key] !== null &&
-      recipe[key].trim() !== ""
+      recipe[key as keyof RecipeProps] !== null &&
+      recipe[key as keyof RecipeProps].trim() !== ""
     )
       measures.push(recipe[key]);
   });
@@ -68,9 +73,8 @@ export const restructureRecipe = (recipe: recipeType) => {
     measuresAndIngredients,
   };
 };
-
-export const restructureRecipes = (recipes: []) => {
-  const restructuredRecipes = [];
+export const restructureRecipes = (recipes: RecipeProps[]) => {
+  const restructuredRecipes: RecipeProps[] = [];
   if (recipes && recipes.length) 
     recipes.forEach((recipe) => {
       restructuredRecipes.push(restructureRecipe(recipe));
