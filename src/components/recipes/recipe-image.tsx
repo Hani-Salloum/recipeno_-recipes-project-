@@ -10,7 +10,7 @@ interface RecipeImageProps {
   strMeal: string;
   strMealThumb: string;
   strRating: string;
-  strTime: string;
+  strTime?: string;
 }
 
 export default function RecipeImage({

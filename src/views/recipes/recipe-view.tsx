@@ -65,7 +65,7 @@ export default function RecipeView({
         </div>
       </div>
       
-      <RecipeSection title="Related Recipes:" recipes={relatedRecipes} />
+      <RecipeSection title="Related Recipes:" recipes={relatedRecipes || []} />
     </div>
   )
 }

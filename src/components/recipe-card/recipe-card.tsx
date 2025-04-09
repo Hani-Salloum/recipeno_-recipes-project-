@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { addFavourite, removeFavourite } from "@/utils/favourites";
 
 interface RecipeCardProps {
   id: string;
@@ -15,7 +16,7 @@ interface RecipeCardProps {
   image: string;
   rating: number;
   isFavorite?: boolean;
-  tag: string;
+  tag?: string ;
   cookTime?: string;
   onFavoriteToggle?: (id: string, isFavorite: boolean) => void;
   onClick?: () => void;
@@ -30,8 +31,8 @@ export default function RecipeCard({
   tag,
   cookTime,
   onFavoriteToggle,
-  // onClick,
-}: RecipeCardProps) {
+}: // onClick,
+RecipeCardProps) {
   const [favorite, setFavorite] = useState(isFavorite);
   const [isHovering, setIsHovering] = useState(false);
 
@@ -41,6 +42,18 @@ export default function RecipeCard({
     e.stopPropagation();
     const newFavoriteState = !favorite;
     setFavorite(newFavoriteState);
+    if (newFavoriteState) {
+      addFavourite({
+        idMeal: id,
+        strMeal: title,
+        strMealThumb: image,
+        strTag: tag,
+        strTime: cookTime || '30min',
+        strRating: rating.toString(),
+      });
+    } else {
+      removeFavourite(id);
+    }
     onFavoriteToggle?.(id, newFavoriteState);
   };
 

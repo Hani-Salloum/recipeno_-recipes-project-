@@ -30,7 +30,7 @@ export const fetchAllIngredients = async () => {
 
 type lmt = number | null
 
-export const filterRecipes = async (filterBy: string, filterValue: string, limit: lmt = null ) => {
+export const filterRecipes = async (filterBy: string, filterValue?: string, limit: lmt = null ) => {
     try {
         const response = (await axiosInstance.get(`${baseURL}filter.php?${filterBy}=${filterValue}`))
         const { data } = response

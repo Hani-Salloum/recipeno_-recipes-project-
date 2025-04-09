@@ -58,7 +58,7 @@ export default function HomeView({ blogPosts, trendingRecipes, todaysPicksRecipe
           title="Your Favorite Recipes"
           description="Quick access to recipes you've saved"
           recipes={favoriteRecipes}
-          viewAllLink="/recipes/favorites"
+          viewAllLink="/recipes"
           viewAllText="View all favorites"
         />
       </div>

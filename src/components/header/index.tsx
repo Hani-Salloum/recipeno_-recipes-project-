@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 interface HeaderProps {
   className?: string;
@@ -14,6 +15,8 @@ export default function Header({ className }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activePath, setActivePath] = useState("/");
+
+  const pathname = usePathname()
 
   // Handle scroll effect
   useEffect(() => {
@@ -27,14 +30,12 @@ export default function Header({ className }: HeaderProps) {
 
   // Set active path based on current URL
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const path = window.location.pathname;
-      if (path.endsWith("recipes")) setActivePath("/recipes");
-      else if (path.endsWith("categories")) setActivePath("/categories");
-      else if (path.endsWith("ingredients")) setActivePath("/ingredients");
-      else if (path.endsWith("cuisines")) setActivePath("/cuisines");
-    }
-  }, []);
+    // const pathname = router.pathname
+    if (pathname.endsWith("recipes")) setActivePath("/recipes");
+    else if (pathname.endsWith("categories")) setActivePath("/categories");
+    else if (pathname.endsWith("ingredients")) setActivePath("/ingredients");
+    else if (pathname.endsWith("cuisines")) setActivePath("/cuisines");
+  }, [pathname]);
 
   const navItems = [
     { name: "Recipes", path: "/recipes" },
@@ -52,14 +53,15 @@ export default function Header({ className }: HeaderProps) {
     >
       <div
         className={cn(
+          "z-50",
           isScrolled
             ? "py-3 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md shadow-sm"
             : "py-5 bg-transparent"
         )}
       >
-        <div className="container mx-auto px-4 flex items-center justify-between">
+        <div className="container z-50 mx-auto px-4 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="relative z-10 flex items-center">
+          <Link href="/" className="relative z-50 flex items-center">
             <Image
               src="/logo.jpg"
               width={120}
@@ -106,7 +108,7 @@ export default function Header({ className }: HeaderProps) {
       {/* Mobile Navigation */}
       <div
         className={cn(
-          "fixed inset-0 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md z-0 md:hidden transition-all duration-300 flex flex-col justify-center items-center",
+          "fixed top-[63px] border-r-[#eee] border-r-2 left-0 w-[50%] h-[100vh] bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md z-0 md:hidden transition-all duration-300 flex flex-col justify-start items-start",
           isMobileMenuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"

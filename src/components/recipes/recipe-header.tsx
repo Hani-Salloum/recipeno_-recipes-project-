@@ -3,10 +3,10 @@
 import { Globe, Tag, ChefHat } from "lucide-react";
 
 interface RecipeHeaderProps {
-  strCategory: string;
-  strArea: string;
+  strCategory?: string;
+  strArea?: string;
   strMeal: string;
-  strTag: string;
+  strTag?: string;
 }
 
 export default function RecipeHeader({

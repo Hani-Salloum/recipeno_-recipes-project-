@@ -23,7 +23,7 @@ export default function RecipesByLetterView() {
   return (
     <div className="mt-[80px] mx-auto px-4 max-w-7xl">
       <div className="flex">
-        <ScrollArea className="max-w-7xl mx-auto whitespace-nowrap">
+        <ScrollArea className="container max-w-7xl mx-auto whitespace-nowrap">
           <div className="flex w-max space-x-4 py-4">
             {letters.map((item, index) => (
               <span

@@ -6,8 +6,8 @@ import RecipeInstructions from "./recipe-instructions";
 import { IngredientWithMeasure } from "@/types/recipes";
 
 interface RecipeTabsProps {
-  strInstructions: string;
-  measuresAndIngredients: IngredientWithMeasure[];
+  strInstructions?: string;
+  measuresAndIngredients?: IngredientWithMeasure[];
 }
 
 export default function RecipeTabs({
@@ -32,11 +32,11 @@ export default function RecipeTabs({
       </TabsList>
 
       <TabsContent value="ingredients" className="pt-6">
-        <RecipeIngredients measuresAndIngredients={measuresAndIngredients} />
+        <RecipeIngredients measuresAndIngredients={measuresAndIngredients || []} />
       </TabsContent>
 
       <TabsContent value="instructions" className="pt-6">
-        <RecipeInstructions strInstructions={strInstructions} />
+        <RecipeInstructions strInstructions={strInstructions || ''} />
       </TabsContent>
     </Tabs>
   );

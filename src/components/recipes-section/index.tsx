@@ -1,10 +1,17 @@
+'use client'
+
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionHeading from "../section-heading";
 import { RecipeProps } from "@/types/recipes";
-import RecipesGrid from "./recipes-grid";
-import RecipesScroll from "./recipes-scroll";
+
+import dynamic from "next/dynamic";
+const RecipesGrid = dynamic(() => import("./recipes-grid"), { ssr: false })
+const RecipesScroll = dynamic(() => import("./recipes-scroll"), { ssr: false })
+
+// import RecipesGrid from "./recipes-grid";
+// import RecipesScroll from "./recipes-scroll";
 
 interface RecipeSectionProps {
   title?: string;

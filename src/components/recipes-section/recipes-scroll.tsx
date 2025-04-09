@@ -3,8 +3,11 @@
 import { useState, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import RecipeCard from "../recipe-card/recipe-card";
+// import RecipeCard from "../recipe-card/recipe-card";
+import dynamic from "next/dynamic";
+const RecipeCard = dynamic(() => import("../recipe-card/recipe-card"), { ssr: false })
 import { RecipeProps } from "@/types/recipes";
+import { useLocalStorage } from '@uidotdev/usehooks'
 
 interface RecipesScrollProps {
   recipes: RecipeProps[];
@@ -16,6 +19,11 @@ export default function RecipesScroll({
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [ favItems ] = useLocalStorage<RecipeProps[]>('favItems', [])
+
+  const isFavorite = (id: string): boolean => {
+    return favItems.some((item) => item.idMeal === id); // ✅ use comparison not assignment
+  };
 
   const checkScrollButtons = () => {
     if (scrollContainerRef.current) {
@@ -87,12 +95,9 @@ export default function RecipesScroll({
                 tag={recipe.strTag}
                 cookTime={recipe.strTime}
                 rating={parseFloat(recipe.strRating)}
-                isFavorite={false}
+                isFavorite={isFavorite(recipe.idMeal)}
                 onFavoriteToggle={(id, isFavorite) => {
                   console.log(`Recipe ${id} favorite status: ${isFavorite}`);
-                }}
-                onClick={() => {
-                  console.log(`Navigating to recipe ${recipe.idMeal}`);
                 }}
               />
             </div>

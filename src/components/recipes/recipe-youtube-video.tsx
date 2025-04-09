@@ -4,7 +4,7 @@ import { Youtube } from "lucide-react";
 
 interface RecipeYoutubeVideoProps {
   strMeal: string;
-  strYoutube: string;
+  strYoutube?: string;
 }
 
 export default function RecipeYoutubeVideo({
@@ -22,7 +22,7 @@ export default function RecipeYoutubeVideo({
       : null;
   };
 
-  const youtubeEmbedUrl = getYoutubeEmbedUrl(strYoutube);
+  const youtubeEmbedUrl = getYoutubeEmbedUrl(strYoutube || '');
 
   return youtubeEmbedUrl ? (
     <div className="mb-12">
